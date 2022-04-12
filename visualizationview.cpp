@@ -106,6 +106,7 @@ void VisualizationView::paintEvent(QPaintEvent *event)
 
     if(shadowRadius >= 0)
     {
+        // 可以对缓存下来，size变化时再重新生成新的。
         QImage image = ShadowFactory::createShadow(this->testSize, this->shadowRadius, this->shadowColor, this->fillColor, this->devicePixelRatioF());
         QPoint diff(this->shadowRadius, this->shadowRadius);
         painter.drawImage(shadowBaseRect.topLeft() - diff, image);
