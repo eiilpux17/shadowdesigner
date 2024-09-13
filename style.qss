@@ -1,1 +1,4 @@
-﻿
+﻿QLineEdit{
+    border: 1px solid red;
+    font-family: dengxian;
+}
