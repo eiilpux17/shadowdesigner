@@ -20,6 +20,7 @@ private slots:
     void pickFillColor();
     void pickShadowColor();
     void pickBackground();
+    QColor pickColor(const QColor & init);
 private:
     Ui::Widget *ui;
 };

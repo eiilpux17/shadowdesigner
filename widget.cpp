@@ -33,8 +33,6 @@ Widget::Widget(QWidget *parent)
     connect(ui->pickShadowColorButton, SIGNAL(clicked(bool)), this, SLOT(pickShadowColor()));
     connect(ui->pickBackgroundButton, SIGNAL(clicked(bool)), this, SLOT(pickBackground()));
 
-    ui->pickFillColorButton->setToolTip("123");
-    ui->pickFillColorButton->setToolTipDuration(0);
     connect(ui->showGridBox, &QCheckBox::stateChanged, [this](){
         ui->shadowVisualization->setShowGrid(ui->showGridBox->isChecked());
     });
@@ -75,7 +73,7 @@ void Widget::pickFillColor()
     if(!color.isValid()){
         color = Qt::white;
     }
-    QColor picked = QColorDialog::getColor(color, this);
+    QColor picked = pickColor(color);
     if(picked.isValid()){
         ui->fillColorEdit->blockSignals(true);
         ui->fillColorEdit->setText(picked.name().mid(1));
@@ -90,8 +88,7 @@ void Widget::pickShadowColor()
     if(!color.isValid()){
         color = Qt::black;
     }
-    QColor picked = QColorDialog::getColor(color, this);
-    qDebug() << picked.name();
+    QColor picked = pickColor(color);
     if(picked.isValid()){
         ui->shadowColorEdit->blockSignals(true);
         ui->shadowColorEdit->setText(picked.name().mid(1));
@@ -106,12 +103,23 @@ void Widget::pickBackground()
     if(!color.isValid()){
         color = Qt::black;
     }
-    QColor picked = QColorDialog::getColor(color, this);
+    QColor picked = pickColor(color);
     if(picked.isValid()){
         ui->backgroundEdit->blockSignals(true);
         ui->backgroundEdit->setText(picked.name().mid(1));
         ui->backgroundEdit->blockSignals(false);
         updateShadow();
     }
+}
+
+QColor Widget::pickColor(const QColor &init)
+{
+    QColorDialog dialog(init, this);
+    dialog.adjustSize();
+    if(dialog.exec() == QDialog::Accepted)
+    {
+        return dialog.selectedColor();
+    }
+    return QColor();
 }
 

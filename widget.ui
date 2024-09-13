@@ -116,6 +116,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="pickFillColorButton">
+             <property name="toolTip">
+              <string>Pick color</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -162,6 +165,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="pickShadowColorButton">
+             <property name="toolTip">
+              <string>Pick color</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -237,6 +243,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="pickBackgroundButton">
+             <property name="toolTip">
+              <string>Pick color</string>
+             </property>
              <property name="text">
               <string/>
              </property>
